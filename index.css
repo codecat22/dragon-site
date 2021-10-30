@@ -5,7 +5,7 @@
   --color-text-alt-border: #446a24;
   --color-text-alt-shadow: #36151e;
   --color-text-author: #fbffb9;
-  --color-text-cite: #E9EB87;
+  --color-text-cite: #e9eb87;
 
   --font-primary: "Henny Penny", cursive;
   --font-secondary: "Lora", serif;
@@ -141,11 +141,10 @@ img {
   max-width: 300px;
 }
 
-
-li > p, details > p {
+li > p,
+details > p {
   font-size: 14px;
 }
-
 
 .title {
   display: flex;
@@ -155,22 +154,23 @@ li > p, details > p {
 
 .dragon.left {
   margin-right: 1.5rem;
-  animation: shake-no-stir 0.6s cubic-bezier(.36,.07,.19,.97) both infinite;
+  animation: shake-no-stir 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
+    infinite;
 }
 
 .dragon.right {
   margin-left: 1.5rem;
-  animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both infinite;
+  animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite;
 }
 
 .dragon.left:hover {
-  animation: flip-no-stir 0.6s cubic-bezier(.36,.07,.19,.97) both infinite;
+  animation: flip-no-stir 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
+    infinite;
 }
 
 .dragon.right:hover {
-  animation: flip 0.6s cubic-bezier(.36,.07,.19,.97) both infinite;
+  animation: flip 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite;
 }
-
 
 @keyframes shake-no-stir {
   50% {

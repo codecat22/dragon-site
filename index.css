@@ -172,6 +172,12 @@ details > p {
   animation: flip 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite;
 }
 
+.credit {
+  color: var(--color-text-alt);
+  font-family: var(--font-secondary);
+  font-size: 12px;
+}
+
 @keyframes shake-no-stir {
   50% {
     transform: rotate(10deg);

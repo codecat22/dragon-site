@@ -11,8 +11,73 @@
   <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lora&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
   <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <title>Dragon</title>
+
+  <script>
+    // source for modal overlay - https://www.w3schools.com/howto/howto_js_lightbox.asp
+
+    document.onkeydown = checkKey;
+
+    function checkKey(e) {
+      e = e || window.event;
+      if (document.getElementById("myModal").style.display === "block") {
+        if (e.keyCode == '37')
+          plusSlides(-1)
+        if (e.keyCode == '39')
+          plusSlides(+1)
+        if (e.key === "Escape")
+          closeModal()
+      }
+    }
+
+    // Open the Modal
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    // Close the Modal
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      var captionText = document.getElementById("caption");
+      if (n > slides.length) {
+        slideIndex = 1
+      }
+      if (n < 1) {
+        slideIndex = slides.length
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+  </script>
+
 </head>
 
 <body>
@@ -40,10 +105,18 @@
               <li>
                 <p class="author-name">Filip Ek Johansson</p>
                 <p>filjo@kth.se</p>
+                <a style="font-size:24px;color: var(--color-text-alt);" class="fa fa-github github-link"
+                   href="https://github.com/filipej" target="_blank"></a>
               </li>
               <li>
                 <p class="author-name">Siyana Ivanova</p>
                 <p>siyanai@kth.se</p>
+                <div>
+                  <a style="font-size:24px;color: var(--color-text-alt);" class="fa fa-github github-link"
+                     href="https://github.com/codecat22" target="_blank"></a>
+                  <a style="font-size:24px;color: var(--color-text-alt);" class="fa fa-linkedin github-link"
+                     href="https://www.linkedin.com/in/siyana-ivanova-24b48b1a1/" target="_blank"></a>
+                </div>
               </li>
             </ul>
           </details>
@@ -201,19 +274,112 @@
       <h3>Photos</h3>
       <ul>
         <li>
-          <img alt="an image indeed" src="./assets/photos/photo1.jpg" />
+          <img class="base-img" onclick="openModal();currentSlide(1)" alt="an image indeed"
+               src="./assets/photos/photo1.jpg" />
         </li>
         <li>
-          <img alt="an image indeed" src="./assets/photos/photo2.jpg" />
+          <img class="base-img" onclick="openModal();currentSlide(2)" alt="an image indeed"
+               src="./assets/photos/photo2.jpg" />
         </li>
         <li>
-          <img alt="an image indeed" src="./assets/photos/photo3.jpg" />
+          <img class="base-img" onclick="openModal();currentSlide(3)" alt="an image indeed"
+               src="./assets/photos/photo3.jpg" />
         </li>
         <li>
-          <img alt="an image indeed" src="./assets/photos/photo4.png" />
+          <img class="base-img" onclick="openModal();currentSlide(4)" alt="an image indeed"
+               src="./assets/photos/photo4.png" />
           <p class="credit">Photo by Mario Romero</p>
         </li>
+        <li>
+          <img class="base-img" onclick="openModal();currentSlide(5)" alt="an image indeed"
+               src="./assets/photos/photo5.png" />
+        </li>
+        <li>
+          <img class="base-img" onclick="openModal();currentSlide(6)" alt="an image indeed"
+               src="./assets/photos/photo6.png" />
+        </li>
+        <li>
+          <img class="base-img" onclick="openModal();currentSlide(7)" alt="an image indeed"
+               src="./assets/photos/photo7.png" />
+        </li>
+        <li>
+          <img class="base-img" onclick="openModal();currentSlide(8)" alt="an image indeed"
+               src="./assets/photos/photo8.png" />
+        </li>
       </ul>
+
+      <div id="myModal" class="modal">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+
+          <div class="mySlides">
+            <div class="numbertext">1 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo1.jpg" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">2 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo2.jpg" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">3 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo3.jpg" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">4 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo4.png" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">5 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo5.png" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">6 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo6.png" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">7 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo7.png" style="width:100%">
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">8 / 8</div>
+            <img alt="an image indeed" src="./assets/photos/photo8.png" style="width:100%">
+          </div>
+
+          <!-- Next/previous controls -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+          <!-- Caption text -->
+          <div class="caption-container">
+            <p id="caption"></p>
+          </div>
+
+          <!-- Thumbnail image controls -->
+          <!-- <div class="column">
+            <img class="demo" alt="an image indeed" src="./assets/photos/photo1.jpg" onclick="currentSlide(1)">
+          </div>
+
+          <div class="column">
+            <img class="demo" alt="an image indeed" src="./assets/photos/photo2.jpg" onclick="currentSlide(2)">
+          </div>
+
+          <div class="column">
+            <img class="demo" alt="an image indeed" src="./assets/photos/photo3.jpg" onclick="currentSlide(3)">
+          </div>
+
+          <div class="column">
+            <img class="demo" alt="an image indeed" src="./assets/photos/photo4.png" onclick="currentSlide(4)">
+          </div> -->
+        </div>
+      </div>
+
     </article>
     <article>
       <h3>Videos</h3>
@@ -252,6 +418,30 @@
           <blockquote>
             <p class="quote">"A really nice game in my opinion"</p>
             <p><cite>~ Mom</cite></p>
+          </blockquote>
+        </li>
+      </ul>
+
+      <h3 style="font-size: 20px;">Presentation Reviews</h3>
+      <ul>
+        <li>
+          <blockquote>
+            <p class="quote">"Cute!"</p>
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            <p class="quote">"The game has really good graphics"</p>
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            <p class="quote">"He can fly?!"</p>
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            <p class="quote">"It's adorable - the art is great."</p>
           </blockquote>
         </li>
       </ul>

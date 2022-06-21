@@ -1,368 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lora&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&family=Lora&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-  <link rel="stylesheet" href="./index.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Dragon</title>
 
-  <title>Dragon</title>
+    <script>
+      // source for modal overlay - https://www.w3schools.com/howto/howto_js_lightbox.asp
 
-  <script>
-    // source for modal overlay - https://www.w3schools.com/howto/howto_js_lightbox.asp
+      document.onkeydown = checkKey;
 
-    document.onkeydown = checkKey;
-
-    function checkKey(e) {
-      e = e || window.event;
-      if (document.getElementById("myModal").style.display === "block") {
-        if (e.keyCode == '37')
-          plusSlides(-1)
-        if (e.keyCode == '39')
-          plusSlides(+1)
-        if (e.key === "Escape")
-          closeModal()
+      function checkKey(e) {
+        e = e || window.event;
+        if (document.getElementById("myModal").style.display === "block") {
+          if (e.keyCode == "37") plusSlides(-1);
+          if (e.keyCode == "39") plusSlides(+1);
+          if (e.key === "Escape") closeModal();
+        }
       }
-    }
 
-    // Open the Modal
-    function openModal() {
-      document.getElementById("myModal").style.display = "block";
-    }
-
-    // Close the Modal
-    function closeModal() {
-      document.getElementById("myModal").style.display = "none";
-    }
-
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    // Next/previous controls
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-
-    // Thumbnail image controls
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("demo");
-      var captionText = document.getElementById("caption");
-      if (n > slides.length) {
-        slideIndex = 1
+      // Open the Modal
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
       }
-      if (n < 1) {
-        slideIndex = slides.length
+
+      // Close the Modal
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
       }
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+
+      var slideIndex = 1;
+      document.onload = function () {
+        showSlides(slideIndex);
+      };
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
       }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
       }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
-      captionText.innerHTML = dots[slideIndex - 1].alt;
-    }
-  </script>
 
-</head>
+      function showSlides(n) {
+        var i;
+        var source = document.getElementsByClassName("mySlides");
+        var slides = Array.from(source);
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
+      }
+    </script>
+  </head>
 
-<body>
-  <header>
-    <div class="title">
-      <img src="assets/dragon-shape-flip.PNG" class="dragon left" />
-      <h1>Here Be Dragons</h1>
-      <img src="assets/dragon-shape.PNG" class="dragon right" />
-    </div>
-    <h2>An AR game for Android</h2>
-  </header>
+  <body>
+    <header>
+      <div class="title">
+        <img src="assets/dragon-shape-flip.PNG" class="dragon left" />
+        <h1>Here Be Dragons</h1>
+        <img src="assets/dragon-shape.PNG" class="dragon right" />
+      </div>
+      <h2>An AR game for Android</h2>
+    </header>
 
-  <main>
-    <article class="about-article">
-      <h3>About</h3>
-      <ul>
-        <li>
-          <details>
-            <summary>Authors</summary>
-            <ul>
-              <li>
-                <p class="author-name">Carl Kernell</p>
-                <p>eckernell@kth.se</p>
-              </li>
-              <li>
-                <p class="author-name">Filip Ek Johansson</p>
-                <p>filjo@kth.se</p>
-                <a style="font-size:24px;color: var(--color-text-alt);" class="fa fa-github github-link"
-                   href="https://github.com/filipej" target="_blank"></a>
-              </li>
-              <li>
-                <p class="author-name">Siyana Ivanova</p>
-                <p>siyanai@kth.se</p>
-                <div>
-                  <a style="font-size:24px;color: var(--color-text-alt);" class="fa fa-github github-link"
-                     href="https://github.com/codecat22" target="_blank"></a>
-                  <a style="font-size:24px;color: var(--color-text-alt);" class="fa fa-linkedin github-link"
-                     href="https://www.linkedin.com/in/siyana-ivanova-24b48b1a1/" target="_blank"></a>
-                </div>
-              </li>
-            </ul>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Goals and motivation</summary>
-            <p>Our goal in this project was to use Unity to develop a simple AR game about raising and taking care of a
-              small dragon.
-              We wanted at least two stages: egg and baby dragon. We conceptualised the game as an opportunity for the
-              player to relax
-              and enjoy some downtime while taking care of a cute Tamagochi-like creature. The project was an
-              opportunity to develop
-              new skills such as using Unity to develop an AR game, animation, and 3D modeling.
-            </p>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Technologies used</summary>
-            <ul>
-              <li>
-                <p class="author-name">Game development</p>
-                <p><i>Unity engine (C#)</i></p>
-                <p>We chose Unity because it is a popular free game engine with a relatively easy learning curve.</p>
-              </li>
-              <li>
-                <p class="author-name">AR</p>
-                <p><i>Unity's AR Foundation framework</i></p>
-                <p>It made sense to use the AR framework already built into Unity.</p>
-              </li>
-              <li>
-                <p class="author-name">3D modeling</p>
-                <p><i>Blender</i></p>
-                <p>We chose Blender for 3D modeling since it is free and tutorials for how to use it are widely
-                  available.</p>
-              </li>
-              <li>
-                <p class="author-name">Audio</p>
-                <p><i>Unity, freesound.org, and audiotrimmer.com</i></p>
-                <p>We used Unity's Audio Manager and found audio clips and music on freesound.org, as everything there
-                  is in the public domain.</p>
-              </li>
-              <li>
-                <p class="author-name">Version control</p>
-                <p><i>Github</i></p>
-                <p>We chose Github for version control as it is the most popular option.</p>
-              </li>
-              <li>
-                <p class="author-name">Communication and organisation</p>
-                <p><i>Discord</i></p>
-                <p>We used Discord for communication because it is flexible and allows for multiple text and voice
-                  channels.</p>
-              </li>
-            </ul>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Contributions</summary>
-            <ul>
-              <li>
-                <p class="author-name">Carl Kernell</p>
-                <p>2D graphics</p>
-                <p>Animation</p>
-                <p>Gameplay</p>
-                <p>Testing</p>
-              </li>
-              <li>
-                <p class="author-name">Filip Ek Johansson</p>
-                <p>Gameplay</p>
-                <p>Interactions</p>
-                <p>Game logic</p>
-                <p>Testing</p>
-              </li>
-              <li>
-                <p class="author-name">Siyana Ivanova</p>
-                <p>Sound and audio</p>
-                <p>Game logic</p>
-                <p>3D and concept art</p>
-                <p>Testing</p>
-              </li>
-            </ul>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Challenges and obstacles</summary>
-            <p>The challenges we encountered included (but were not limited to) technical and artistic expertise as well
-              as
-              time constraints. There were many difficulties when learning how to use Unity and Blender and create
-              animations.
-              Some of these difficulties lead to changes in the idea and design, such as the shift from 3D to mostly 2D:
-              a choice
-              we ended up being extremely happy with. </p>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Related work</summary>
-            <ul>
-              <li>
-                <p class="author-name">Inspiration:</p>
-                <p><i>Tamagotchi</i>, 1996, Bandai</p>
-                <p><i>AR Dragon</i>, 2017, PlaySide</p>
-              </li>
-              <li>
-                <p class="author-name">Related literature:</p>
-                <p>Leite, Iolanda, et al. “’Why Can’t We Be Friends?’ an Empathic Game Companion for Long-Term
-                  Interaction.”
-                  <i>Intelligent Virtual Agents</i>, 2010, pp. 315–321., https://doi.org/10.1007/978-3-642-15892-6_32.
-                </p>
-              </li>
-              <li>
-                <p>Ohkura, Michiko. <i>Kawaii Engineering: Measurements, Evaluations, and Applications of
-                    Attractiveness.</i>
-                  Springer Nature, 2019. </p>
-              </li>
-            </ul>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Lessons learned</summary>
-            <ul>
-              <li>
-                <p>
-                  If you get a better idea after already having started working on a project, it is worth switching to
-                  it for better results,
-                  even if it means abandoning some completed work. Changing our graphics from 3D to mostly 2D improved
-                  the look and feel of the game a lot.
-                </p>
-              </li>
-              <li>
-                <p>
-                  People look for an overarching, complete atmosphere in a game before they focus on any details. Having
-                  a consistent style and cute
-                  character design is what most positive comments were concentrated on.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Being passionate about an idea and thinking of many features to add does not magically generate the
-                  time and expertise necessary for execution.
-                  Project plans should have some time set aside specifically for learning how to work with unfamiliar
-                  technologies.
-                </p>
-              </li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </article>
-    <article>
-      <h3>Photos</h3>
-      <ul>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(1)" alt="an image indeed"
-               src="./assets/photos/photo1.jpg" />
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(2)" alt="an image indeed"
-               src="./assets/photos/photo2.jpg" />
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(3)" alt="an image indeed"
-               src="./assets/photos/photo3.jpg" />
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(4)" alt="an image indeed"
-               src="./assets/photos/photo4.png" />
-          <p class="credit">Photo by Mario Romero</p>
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(5)" alt="an image indeed"
-               src="./assets/photos/photo5.png" />
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(6)" alt="an image indeed"
-               src="./assets/photos/photo6.png" />
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(7)" alt="an image indeed"
-               src="./assets/photos/photo7.png" />
-        </li>
-        <li>
-          <img class="base-img" onclick="openModal();currentSlide(8)" alt="an image indeed"
-               src="./assets/photos/photo8.png" />
-        </li>
-      </ul>
+    <main>
+      <article class="about-article">
+        <h3>About</h3>
+        <ul>
+          <li>
+            <details>
+              <summary>Authors</summary>
+              <ul>
+                <li>
+                  <p class="author-name">Carl Kernell</p>
+                  <p>eckernell@kth.se</p>
+                </li>
+                <li>
+                  <p class="author-name">Filip Ek Johansson</p>
+                  <p>filjo@kth.se</p>
+                  <a
+                    style="font-size: 24px; color: var(--color-text-alt)"
+                    class="fa fa-github github-link"
+                    href="https://github.com/filipej"
+                    target="_blank"
+                  ></a>
+                </li>
+                <li>
+                  <p class="author-name">Siyana Ivanova</p>
+                  <p>siyanai@kth.se</p>
+                  <div>
+                    <a
+                      style="font-size: 24px; color: var(--color-text-alt)"
+                      class="fa fa-github github-link"
+                      href="https://github.com/codecat22"
+                      target="_blank"
+                    ></a>
+                    <a
+                      style="font-size: 24px; color: var(--color-text-alt)"
+                      class="fa fa-linkedin github-link"
+                      href="https://www.linkedin.com/in/siyana-ivanova-24b48b1a1/"
+                      target="_blank"
+                    ></a>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Goals and motivation</summary>
+              <p>
+                Our goal in this project was to use Unity to develop a simple AR
+                game about raising and taking care of a small dragon. We wanted
+                at least two stages: egg and baby dragon. We conceptualised the
+                game as an opportunity for the player to relax and enjoy some
+                downtime while taking care of a cute Tamagochi-like creature.
+                The project was an opportunity to develop new skills such as
+                using Unity to develop an AR game, animation, and 3D modeling.
+              </p>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Technologies used</summary>
+              <ul>
+                <li>
+                  <p class="author-name">Game development</p>
+                  <p><i>Unity engine (C#)</i></p>
+                  <p>
+                    We chose Unity because it is a popular free game engine with
+                    a relatively easy learning curve.
+                  </p>
+                </li>
+                <li>
+                  <p class="author-name">AR</p>
+                  <p><i>Unity's AR Foundation framework</i></p>
+                  <p>
+                    It made sense to use the AR framework already built into
+                    Unity.
+                  </p>
+                </li>
+                <li>
+                  <p class="author-name">3D modeling</p>
+                  <p><i>Blender</i></p>
+                  <p>
+                    We chose Blender for 3D modeling since it is free and
+                    tutorials for how to use it are widely available.
+                  </p>
+                </li>
+                <li>
+                  <p class="author-name">Audio</p>
+                  <p><i>Unity, freesound.org, and audiotrimmer.com</i></p>
+                  <p>
+                    We used Unity's Audio Manager and found audio clips and
+                    music on freesound.org, as everything there is in the public
+                    domain.
+                  </p>
+                </li>
+                <li>
+                  <p class="author-name">Version control</p>
+                  <p><i>Github</i></p>
+                  <p>
+                    We chose Github for version control as it is the most
+                    popular option.
+                  </p>
+                </li>
+                <li>
+                  <p class="author-name">Communication and organisation</p>
+                  <p><i>Discord</i></p>
+                  <p>
+                    We used Discord for communication because it is flexible and
+                    allows for multiple text and voice channels.
+                  </p>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Contributions</summary>
+              <ul>
+                <li>
+                  <p class="author-name">Carl Kernell</p>
+                  <p>2D graphics</p>
+                  <p>Animation</p>
+                  <p>Gameplay</p>
+                  <p>Testing</p>
+                </li>
+                <li>
+                  <p class="author-name">Filip Ek Johansson</p>
+                  <p>Gameplay</p>
+                  <p>Interactions</p>
+                  <p>Game logic</p>
+                  <p>Testing</p>
+                </li>
+                <li>
+                  <p class="author-name">Siyana Ivanova</p>
+                  <p>Sound and audio</p>
+                  <p>Game logic</p>
+                  <p>3D and concept art</p>
+                  <p>Testing</p>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Challenges and obstacles</summary>
+              <p>
+                The challenges we encountered included (but were not limited to)
+                technical and artistic expertise as well as time constraints.
+                There were many difficulties when learning how to use Unity and
+                Blender and create animations. Some of these difficulties lead
+                to changes in the idea and design, such as the shift from 3D to
+                mostly 2D: a choice we ended up being extremely happy with.
+              </p>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Related work</summary>
+              <ul>
+                <li>
+                  <p class="author-name">Inspiration:</p>
+                  <p><i>Tamagotchi</i>, 1996, Bandai</p>
+                  <p><i>AR Dragon</i>, 2017, PlaySide</p>
+                </li>
+                <li>
+                  <p class="author-name">Related literature:</p>
+                  <p>
+                    Leite, Iolanda, et al. “’Why Can’t We Be Friends?’ an
+                    Empathic Game Companion for Long-Term Interaction.”
+                    <i>Intelligent Virtual Agents</i>, 2010, pp. 315–321.,
+                    https://doi.org/10.1007/978-3-642-15892-6_32.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Ohkura, Michiko.
+                    <i
+                      >Kawaii Engineering: Measurements, Evaluations, and
+                      Applications of Attractiveness.</i
+                    >
+                    Springer Nature, 2019.
+                  </p>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Lessons learned</summary>
+              <ul>
+                <li>
+                  <p>
+                    If you get a better idea after already having started
+                    working on a project, it is worth switching to it for better
+                    results, even if it means abandoning some completed work.
+                    Changing our graphics from 3D to mostly 2D improved the look
+                    and feel of the game a lot.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    People look for an overarching, complete atmosphere in a
+                    game before they focus on any details. Having a consistent
+                    style and cute character design is what most positive
+                    comments were concentrated on.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Being passionate about an idea and thinking of many features
+                    to add does not magically generate the time and expertise
+                    necessary for execution. Project plans should have some time
+                    set aside specifically for learning how to work with
+                    unfamiliar technologies.
+                  </p>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h3>Photos</h3>
+        <ul>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(1)"
+              alt="an image indeed"
+              src="./assets/photos/photo1.jpg"
+            />
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(2)"
+              alt="an image indeed"
+              src="./assets/photos/photo2.jpg"
+            />
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(3)"
+              alt="an image indeed"
+              src="./assets/photos/photo3.jpg"
+            />
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(4)"
+              alt="an image indeed"
+              src="./assets/photos/photo4.png"
+            />
+            <p class="credit">Photo by Mario Romero</p>
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(5)"
+              alt="an image indeed"
+              src="./assets/photos/photo5.png"
+            />
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(6)"
+              alt="an image indeed"
+              src="./assets/photos/photo6.png"
+            />
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(7)"
+              alt="an image indeed"
+              src="./assets/photos/photo7.png"
+            />
+          </li>
+          <li>
+            <img
+              class="base-img"
+              onclick="openModal();currentSlide(8)"
+              alt="an image indeed"
+              src="./assets/photos/photo8.png"
+            />
+          </li>
+        </ul>
 
-      <div id="myModal" class="modal">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
+        <div id="myModal" class="modal">
+          <span class="close cursor" onclick="closeModal()">&times;</span>
+          <div class="modal-content">
+            <div class="mySlides">
+              <div class="numbertext">1 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo1.jpg"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">1 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo1.jpg" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">2 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo2.jpg"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">2 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo2.jpg" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">3 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo3.jpg"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">3 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo3.jpg" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">4 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo4.png"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">4 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo4.png" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">5 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo5.png"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">5 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo5.png" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">6 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo6.png"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">6 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo6.png" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">7 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo7.png"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">7 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo7.png" style="width:100%">
-          </div>
+            <div class="mySlides">
+              <div class="numbertext">8 / 8</div>
+              <img
+                alt="an image indeed"
+                src="./assets/photos/photo8.png"
+                style="width: 100%"
+              />
+            </div>
 
-          <div class="mySlides">
-            <div class="numbertext">8 / 8</div>
-            <img alt="an image indeed" src="./assets/photos/photo8.png" style="width:100%">
-          </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-          <!-- Next/previous controls -->
-          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <!-- Caption text -->
+            <div class="caption-container">
+              <p id="caption"></p>
+            </div>
 
-          <!-- Caption text -->
-          <div class="caption-container">
-            <p id="caption"></p>
-          </div>
-
-          <!-- Thumbnail image controls -->
-          <!-- <div class="column">
+            <!-- Thumbnail image controls -->
+            <!-- <div class="column">
             <img class="demo" alt="an image indeed" src="./assets/photos/photo1.jpg" onclick="currentSlide(1)">
           </div>
 
@@ -377,77 +484,85 @@
           <div class="column">
             <img class="demo" alt="an image indeed" src="./assets/photos/photo4.png" onclick="currentSlide(4)">
           </div> -->
+          </div>
         </div>
-      </div>
+      </article>
+      <article>
+        <h3>Videos</h3>
+        <ul>
+          <li>
+            <iframe
+              width="300"
+              height="200"
+              src="https://www.youtube.com/embed/5L8blJKYNk0"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </li>
+          <li>
+            <iframe
+              width="300"
+              height="200"
+              src="https://www.youtube.com/embed/FxuaJ9DEBYk"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h3>Reviews</h3>
+        <ul>
+          <li>
+            <blockquote>
+              <p class="quote">
+                "It's like having a little friend in my pocket"
+              </p>
+              <p><cite>~ Neighbour</cite></p>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p class="quote">"This is very cute"</p>
+              <p><cite>~ Local nerd</cite></p>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p class="quote">"A really nice game in my opinion"</p>
+              <p><cite>~ Mom</cite></p>
+            </blockquote>
+          </li>
+        </ul>
 
-    </article>
-    <article>
-      <h3>Videos</h3>
-      <ul>
-        <li>
-          <iframe width="300" height="200" src="https://www.youtube.com/embed/5L8blJKYNk0" title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
-        </li>
-        <li>
-          <iframe width="300" height="200" src="https://www.youtube.com/embed/FxuaJ9DEBYk" title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
-
-        </li>
-      </ul>
-    </article>
-    <article>
-      <h3>Reviews</h3>
-      <ul>
-        <li>
-          <blockquote>
-            <p class="quote">"It's like having a little friend in my pocket"</p>
-            <p><cite>~ Neighbour</cite></p>
-          </blockquote>
-        </li>
-        <li>
-          <blockquote>
-            <p class="quote">"This is very cute"</p>
-            <p><cite>~ Local nerd</cite></p>
-          </blockquote>
-        </li>
-        <li>
-          <blockquote>
-            <p class="quote">"A really nice game in my opinion"</p>
-            <p><cite>~ Mom</cite></p>
-          </blockquote>
-        </li>
-      </ul>
-
-      <h3 style="font-size: 20px;">Presentation Reviews</h3>
-      <ul>
-        <li>
-          <blockquote>
-            <p class="quote">"Cute!"</p>
-          </blockquote>
-        </li>
-        <li>
-          <blockquote>
-            <p class="quote">"The game has really good graphics"</p>
-          </blockquote>
-        </li>
-        <li>
-          <blockquote>
-            <p class="quote">"He can fly?!"</p>
-          </blockquote>
-        </li>
-        <li>
-          <blockquote>
-            <p class="quote">"It's adorable - the art is great."</p>
-          </blockquote>
-        </li>
-      </ul>
-    </article>
-  </main>
-
-</body>
-
+        <h3 style="font-size: 20px">Presentation Reviews</h3>
+        <ul>
+          <li>
+            <blockquote>
+              <p class="quote">"Cute!"</p>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p class="quote">"The game has really good graphics"</p>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p class="quote">"He can fly?!"</p>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p class="quote">"It's adorable - the art is great."</p>
+            </blockquote>
+          </li>
+        </ul>
+      </article>
+    </main>
+  </body>
 </html>
